@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <title>Search input example</title>
+    <link rel="stylesheet" type="text/css" href="search-input.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="list-view.js"></script>
+    <script type="text/javascript" src="search-input.js"></script>
+    <script>
+      $(function() {
+
+      // Define a simple array based suggestion provider
+      var suggestionArrayProvider = function(array) {
+        this.array = array ;
+        this.filtered = [] ;
+      } ;
+      suggestionArrayProvider.prototype = {
+        getCount : function() { return this.filtered.length ; },
+        getView : function(index) { return $('<div>').text(this.filtered[index]) ; },
+        getItem : function(index) { return this.filtered[index] ; },
+        selectItem : function(index, view) {view.addClass('selected');},
+        unselect : function(index, view) {view.removeClass('selected')},
+        releaseView : function(view) { view.detach() ; },
+        on : function(events, handler, context) {
+          $(this).on(events, $.proxy(handler, context)) ; 
+        },
+        update : function (pattern) {
+          this.filtered = [] ;
+          if(pattern !== '') {
+            var strIndex ;
+            for(strIndex in this.array) {
+
+              if(this.array[strIndex].toUpperCase().indexOf(pattern.toUpperCase()) !== -1 ) {
+                this.filtered.push(this.array[strIndex]) ;
+              }
+            }
+          }
+          $(this).trigger('reset') ;
+        }
+      } ;
+      // Define the related item provider
+      var itemArrayProvider = function(array) {
+        this.array = array ;
+      } ;
+      itemArrayProvider.prototype = {
+          getView : function(data, index) { return $('<span>').text('>>' + data) ; },
+          equals : function(data1, data2) { return data1 === data2 ; }
+      }
+
+      // Create the search input with some suggestions
+      var suggestions = [
+        'Shanghai',
+        'Istanbul',
+        'Tokyo',
+        'Mumbai',
+        'Beijing',
+        'Zhoukou',
+        'Dhaka',
+        'Nanyang',
+        'Karachi',
+        'Baoding',
+        'Chengdu',
+        'Delhi',
+        'Sao Paulo',
+        'Moscow',
+        'Linyi',
+        'Jakarta'
+      ] ;
+
+      var provider = new suggestionArrayProvider(suggestions)
+
+      var searchInput = new SearchInput(
+        $("#placeholder"), 
+        provider,
+        new itemArrayProvider(suggestions),
+        {
+          hint : "Select cities...",
+          suggestionDropdownStyleClass : "search-input-dropdown-container",
+          hintStyleClass : "search-input-dropdown-hint",
+          stackItemClass : "search-input-item", 
+          selectedStackItemClass : "search-input-selected-item",
+          stackItemDeleteButtonStyleClass: "search-input-item-delete-button",
+          searchEditInputStyleClass:"search-input-edit",
+          inputContainerClass : "search-input-item-container",
+          suggestionListStyleClass : "search-input-suggestion-container",
+          styleClass : "search-input-container"
+        }
+      ) ;
+
+      searchInput.on("patternChanged", function(event, pattern) {
+        provider.update(pattern) ;
+      }) ;
+
+      }) ;
+    </script>
+  </head>
+  <body>
+    <div class='search-input-block'><div id="placeholder"></div></div>
+  </body>
+</html>

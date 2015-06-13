@@ -1,0 +1,117 @@
+.search-input-container{
+    position:relative;
+    z-index: 99; 
+    height:30px;
+}
+
+.search-input-suggestion-selected{
+    background:#F78E31;
+}
+
+.search-input-selected-item span {
+    color: red ;
+    font-weight:bold;
+}
+
+
+.search-input-item {
+    font-family:Roboto Slab;
+    overflow: hidden; 
+    height: 100%; 
+    line-height:30px;
+    background-color: #bbb;
+    color: #fff;
+    cursor: default;
+    font-size: 12px;
+    font-weight:Bold;
+    white-space: nowrap;
+    float:left;
+    padding-left:5px;
+    text-shadow: 1px 1px 1px #8f8f8f;
+    filter: dropshadow(color=#8f8f8f, offx=1, offy=1);
+}
+
+.search-input-item span {
+    float:left;
+    display:inline-block;
+}
+
+.search-input-item-delete-button{
+    display:inline;
+    margin-left:4px;
+    padding-left:1px;
+    padding-right:1px;
+    margin-right:3px;
+}
+
+.search-input-item-container{
+    overflow: hidden; 
+    height: 100%;
+    width: 100%;
+    cursor: text;
+    font-size: 12px;
+    min-height: 1px;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    list-style-type: none;
+    clear: left;
+    list-style:none;
+    border: gray solid 2px;
+}
+
+.search-input-input-block{
+    height : 100% ;
+}
+.search-input-input-block input{
+    height:24px;
+    padding:0;
+    padding-left:4px;
+    width:auto ;
+    line-height: 24px ;
+}
+
+.search-input-edit{
+    outline:none ;
+    border:1px ;
+    box-shadow: none ;
+    width:auto;
+
+    background-color: white;
+   
+    -webkit-appearance: caret;
+    float: left;
+    display: block ; 
+    height: 100%;
+    font-size: 22px ;
+}
+
+.search-input-dropdown-container {
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden;
+    cursor: default;
+    font-size: 11px;
+    color: #333333;
+    z-index: 1;
+}
+
+
+.search-input-suggestion {
+    background-color: #fff;
+    padding: 3px;
+    margin: 0;
+    list-style-type: none;
+    font-family:sans-serif;
+}
+
+.search-input-suggestion-selected {
+    background-color: #3384ad;
+    color: #fff;
+}
+
+.selected {
+    font-weight: bold ;
+}
