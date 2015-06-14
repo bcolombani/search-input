@@ -72,6 +72,7 @@ var StackItemAdapter = function(itemAdapter, options) {
 StackItemAdapter.defaultOptions = {
     itemStyleClass : "default-stack-item",
     selectedItemStyleClass : "default-selected-stack-item",
+    itemContentStyleClass : "default-stack-item-content",
     deleteButtonStyleClass : "default-stack-item-delete-button"
 } ;
 
@@ -84,8 +85,10 @@ StackItemAdapter.prototype.getView = function(itemIndex) {
 StackItemAdapter.prototype.wrapView = function(view, itemIndex) {
     var wrapper = $("<div>").addClass(this.options.itemStyleClass);
     var deleteButton = $("<div>").addClass(this.options.deleteButtonStyleClass);
+    var content = $("<div>").addClass(this.options.itemContentStyleClass)
     deleteButton.text("x") ;
-    wrapper.append(view) ;
+    content.append(view) ;
+    wrapper.append(content) ;
     wrapper.append(deleteButton) ;
     
     var item = this.items[itemIndex];
@@ -177,6 +180,7 @@ var SearchEdit = function(stackedItemAdapter, options) {
             {
                     itemStyleClass : this.options.stackItemClass,
                     selectedItemStyleClass : this.options.selectedStackItemClass,
+                    itemContentStyleClass : this.options.stackItemContentStyleClass,
                     deleteButtonStyleClass : this.options.stackItemDeleteButtonStyleClass
             }
     ) ;
@@ -243,6 +247,7 @@ SearchEdit.defaultOptions = {
     inputStyleClass : "default-search-edit-input",
     stackItemClass : "default-stack-item",
     selectedStackItemClass:"default-selected-stack-item",
+    stackItemContentStyleClass:"default-stack-item-content",
     stackItemDeleteButtonStyleClass:"default-stack-item-delete-button"
 };
 
@@ -348,10 +353,11 @@ SearchInput.defaultOptions = {
     hintStyleClass : "default-suggestion-dropdown-hint",
     stackItemClass : "default-stack-item",
     selectedStackItemClass:"default-selected-stack-item",
+    stackItemContentStyleClass : "default-stack-item-content",
     stackItemDeleteButtonStyleClass:"default-stack-item-delete-button",
     searchEditInputStyleClass:"default-search-edit-input",
     inputContainerClass: "default-search-item-input-container",
-    styleClass: "default-search-item",
+    styleClass: "default-search-input",
     suggestionListStyleClass:"default-suggestion-dropdown-list"
 };
 
@@ -373,6 +379,7 @@ SearchInput.prototype.buildView = function(suggestionListAdapter, stackedItemAda
                     inputStyleClass : this.options.searchEditInputStyleClass,
                     stackItemClass : this.options.stackItemClass,
                     selectedStackItemClass : this.options.selectedStackItemClass,
+                    stackItemContentStyleClass : this.options.stackItemContentStyleClass,
                     stackItemDeleteButtonStyleClass : this.options.stackItemDeleteButtonStyleClass
             }
     ) ;

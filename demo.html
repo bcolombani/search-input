@@ -1,7 +1,9 @@
 <html>
   <head>
     <title>Search input example</title>
+    <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="search-input.css">
+    <link rel="stylesheet" type="text/css" href="demo.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="list-view.js"></script>
     <script type="text/javascript" src="search-input.js"></script>
@@ -15,10 +17,10 @@
       } ;
       suggestionArrayProvider.prototype = {
         getCount : function() { return this.filtered.length ; },
-        getView : function(index) { return $('<div>').text(this.filtered[index]) ; },
+        getView : function(index) { return $('<div>').text(this.filtered[index]).addClass('suggestion') ; },
         getItem : function(index) { return this.filtered[index] ; },
-        selectItem : function(index, view) {view.addClass('selected');},
-        unselect : function(index, view) {view.removeClass('selected')},
+        selectItem : function(index, view) {view.addClass('suggestion-selected');},
+        unselect : function(index, view) {view.removeClass('suggestion-selected')},
         releaseView : function(view) { view.detach() ; },
         on : function(events, handler, context) {
           $(this).on(events, $.proxy(handler, context)) ; 
@@ -42,7 +44,7 @@
         this.array = array ;
       } ;
       itemArrayProvider.prototype = {
-          getView : function(data, index) { return $('<span>').text('>>' + data) ; },
+          getView : function(data, index) { return $('<span>').text(data) ; },
           equals : function(data1, data2) { return data1 === data2 ; }
       }
 
@@ -74,15 +76,6 @@
         new itemArrayProvider(suggestions),
         {
           hint : "Select cities...",
-          suggestionDropdownStyleClass : "search-input-dropdown-container",
-          hintStyleClass : "search-input-dropdown-hint",
-          stackItemClass : "search-input-item", 
-          selectedStackItemClass : "search-input-selected-item",
-          stackItemDeleteButtonStyleClass: "search-input-item-delete-button",
-          searchEditInputStyleClass:"search-input-edit",
-          inputContainerClass : "search-input-item-container",
-          suggestionListStyleClass : "search-input-suggestion-container",
-          styleClass : "search-input-container"
         }
       ) ;
 

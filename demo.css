@@ -1,0 +1,19 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+}
+
+.search-input-block {
+  height: 400px;
+  padding: 6px;
+  box-shadow: 1px 2px 5px #888888;
+}
+
+.suggestion {
+	margin : 2px ;
+}
+
+.suggestion-selected {
+	background-color : #B6B6B6 ;
+	color : white ;
+}
